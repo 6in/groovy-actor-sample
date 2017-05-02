@@ -1,0 +1,29 @@
+sample:
+  test: "abc"
+
+dbActor:
+  instances: 2
+  jdbc:
+    drv: org.h2.Driver
+    url: jdbc:h2:/tmp/test
+    usr: "sa"
+    psw: ""
+  sqls:
+    create_tables: |
+      create table if not exists test (
+        id bigint auto_increment,
+        name varchar(255),
+        primary key (id)
+      )
+    truncate_data: |
+      truncate table test
+    insert_data: |
+      insert into test(name) values ('chironaka')
+    select_test: |
+      select *
+      from
+        test
+      where 1=1
+      and id = /*ID*/0
+    insert_rec: |
+      insert into test(name) values (/*name*/'' )
